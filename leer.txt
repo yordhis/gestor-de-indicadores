@@ -1,0 +1,21 @@
+para ingresar:
+
+Usuario: LeoAdmin
+
+Password: 123456
+
+- Modificar el formulario dentro del modulo "Carrera" 
+- Crear un Modulo llamado "Gestion" donde se integrará los siguientes sub-modulos:
+1) Cambio de Turno y o/Sección
+2) Subproyecto Paralelo
+3) Activación y/o Reingreso
+4) Prosecución de TSU a Ingeniería
+5) Autoestudio
+6) Carrera Simultánea
+7) Exceso de UC
+8) Inscripción Extemporánea
+9) Asentamiento
+10) Levantamiento de Prelación.
+
+- Integrar una lib que permita exportar los datos de las tablas a formato Excel y PDF
+- Modificar la sección de Usuario/perfil Usuario, permita subir fotos.
