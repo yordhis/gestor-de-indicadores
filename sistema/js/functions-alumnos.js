@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded',function(){
         var formAlumno = new FormData(formALumnos);
         request.open('POST',ajaxUrl,true);
         request.send(formAlumno);
-
         request.onreadystatechange = function() {
             if(request.readyState == 4 && request.status == 200) {
                 var objData = JSON.parse(request.responseText);

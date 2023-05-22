@@ -50,10 +50,16 @@ document.addEventListener('DOMContentLoaded',function(){
         }
 
         var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-        var ajaxUrl = './models/profesores/ajax-profesores.php';
+        var ajaxUrl = idProfesor === '' ? './models/profesores/ajax-profesor-registrar.php'
+                                        : './models/profesores/ajax-profesor-editar.php';
+        console.log(ajaxUrl);
         var formData = new FormData(formProfesor);
+        console.log(formData);
         request.open('POST',ajaxUrl,true);
         request.send(formData);
+        console.log(request.readyState);
+        console.log(request.status);
+        console.log(request.responseText);
         request.onreadystatechange = function() {
             if(request.readyState == 4 && request.status == 200) {
                 var objData = JSON.parse(request.responseText);
