@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-05-2023 a las 08:17:58
+-- Tiempo de generación: 23-05-2023 a las 10:30:26
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.3
 
@@ -133,8 +133,7 @@ INSERT INTO `indicadores` (`id_indicador`, `nombre`, `estatus_indicador`, `id_it
 (20, 'Solicitudes de ubicación al escalafón REA', 1, 3, '2023-05-03 04:26:36', '2023-05-03 04:26:36'),
 (21, 'Trabajos Cerrados', 1, 4, '2023-05-03 04:28:28', '2023-05-03 04:28:28'),
 (22, 'Trabajos Inscritos', 1, 4, '2023-05-03 04:28:28', '2023-05-03 04:28:28'),
-(23, 'Trabajos Retirados', 1, 4, '2023-05-03 04:28:28', '2023-05-03 04:28:28'),
-(24, 'Matricula o Total de Estudiantes', 1, 1, '2023-05-10 05:42:40', '2023-05-10 05:42:40');
+(23, 'Trabajos Retirados', 1, 4, '2023-05-03 04:28:28', '2023-05-03 04:28:28');
 
 -- --------------------------------------------------------
 
