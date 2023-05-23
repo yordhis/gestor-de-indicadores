@@ -26,6 +26,10 @@ require_once 'includes/header_reportes.php';
       <div class="row" id="lista_solicitudes">
           <!-- Llenado automatico desde JS, se espera una lista de tarjetas de todos los item y sus indicadores -->
       </div>
+      <div class="row" id="barraDeEstadisticas">
+          <!-- Barra de estadisticas por item -->
+       
+      </div>
 
     </section>
     </main>
