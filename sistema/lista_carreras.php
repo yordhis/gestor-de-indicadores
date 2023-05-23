@@ -13,7 +13,7 @@ require_once 'includes/Modals/modal_carrera.php';
         <div>
           <h1>
               <i class="fas fa-user-tag"></i> Lista de Carreras
-              <button class="btn btn-primary" type="button" onclick="openModalCarrera()">Agregar Carrera</button>
+              <button class="btn btn-primary" type="button" onclick="openModalCarrerasX()">Agregar Carrera</button>
           </h1>
         </div>
         <ul class="app-breadcrumb breadcrumb">

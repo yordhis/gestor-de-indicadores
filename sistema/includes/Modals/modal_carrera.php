@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalFormCarrera" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modalFormCarreraX" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header headerRegister">
@@ -20,9 +20,6 @@
                     <div class="form-group">
                         <label for="exampleSelect1">Nombre de la carrera</label>
                         <input type="text" name="nombre"  id="nombre" class="form-control" placeholder="Ingrese nombre de la carrera" value="">
-                        <!-- <select class="form-control" name="listMateria" id="listMateria" required> -->
-                            <!-- CONTENIDO AJAX -->
-                        <!-- </select> --> 
                     </div>
      
                     <div class="form-group">

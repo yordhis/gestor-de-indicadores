@@ -4,7 +4,7 @@ if(empty($_SESSION['active'])) {
   header("Location: ../");
 }
 require_once 'includes/session.php';
-require_once 'includes/header.php';
+require_once 'includes/header_reportes.php';
 // require_once 'includes/Modals/modal_reporte.php';
 // require_once 'includes/Modals/modal_ver_solicitud.php';
 ?>
@@ -22,30 +22,13 @@ require_once 'includes/header.php';
           <li class="breadcrumb-item"><a href="#">Lista de reporte</a></li>
         </ul>
       </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="tile">
-            <div class="tile-body">
-              <div class="table-responsive">
-                <table class="table table-hover table-bordered" id="tableReporte">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Item</th>
-                      <th>indicador</th>
-                      <th>Total de solicitudes</th>
-                      <!-- <th>Acciones</th> -->
-                    </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
+    <section class="section dashboard" >
+      <div class="row" id="lista_solicitudes">
+          <!-- Llenado automatico desde JS, se espera una lista de tarjetas de todos los item y sus indicadores -->
       </div>
-    </main>
 
-<?php require_once 'includes/footer.php'; ?>
+    </section>
+    </main>
+    
+
+<?php require_once 'includes/footer_reportes.php'; ?>

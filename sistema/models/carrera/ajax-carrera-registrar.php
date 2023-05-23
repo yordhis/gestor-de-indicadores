@@ -12,7 +12,7 @@ if(!empty($_POST)) {
         $status = $_POST['listStatus'];
 
         // CONSULTA PARA INSERTAR
-        $sql = "SELECT * FROM carreras WHERE codigo = ? ";
+        $sql = "SELECT * FROM carreras WHERE codigo = ?  AND estatus_carrera != 0";
         $query = $pdo->prepare($sql);
         $query->execute(array($codigo));
         $resultDataBase = $query->fetch(PDO::FETCH_ASSOC);

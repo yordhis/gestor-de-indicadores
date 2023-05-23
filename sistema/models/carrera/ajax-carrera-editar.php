@@ -12,7 +12,7 @@ if(!empty($_POST)) {
         $status = $_POST['listStatus'];
 
         // CONSULTA PARA ACTUALIZAR
-        $sql2 = "SELECT * FROM carreras WHERE codigo = ? AND id != ?";
+        $sql2 = "SELECT * FROM carreras WHERE codigo = ? AND id_carrera != ?";
         $query2 = $pdo->prepare($sql2);
         $query2->execute(array($codigo,$id));
         $resultUpdate = $query2->fetch(PDO::FETCH_ASSOC);
@@ -21,7 +21,7 @@ if(!empty($_POST)) {
          if($resultUpdate > 0) {
             $arrResponse = array('status' => false,'msg' => 'El código y el nombre existen');
         } else {
-            $sql_update = "UPDATE carreras SET codigo = ?, nombre = ?,estatus = ? WHERE id_carrera = ?";
+            $sql_update = "UPDATE carreras SET codigo = ?, nombre = ?, estatus_carrera = ? WHERE id_carrera = ?";
             $query_update = $pdo->prepare($sql_update);
             $request2 = $query_update->execute(array($codigo,$nombre,$status,$id));
             if($request2) {

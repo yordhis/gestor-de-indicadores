@@ -2,7 +2,7 @@
 
 require_once '../../includes/config.php';
 
-$sql = "SELECT * FROM carreras";
+$sql = "SELECT * FROM carreras WHERE estatus_carrera != 0";
 $query = $pdo->prepare($sql);
 $query->execute();
 
@@ -18,8 +18,8 @@ for($i = 0;$i < count($data);$i++) {
     }
 
     $data[$i]['options'] = '<div class="text-center">
-        <button class="btn btn-primary btn-sm btnEditCarrera" rl="'.$data[$i]['id_carrera'].'" title="Editar"><i class="fas fa-pencil-alt"></i></button>
-        <button class="btn btn-danger btn-sm btnDelCarrera" rl="'.$data[$i]['id_carrera'].'" title="Eliminar"><i class="fas fa-trash-alt"></i></button>                   
+        <button class="btn btn-primary btn-sm btnEditCarreraX" rl="'.$data[$i]['id_carrera'].'" title="Editar"><i class="fas fa-pencil-alt"></i></button>
+        <button class="btn btn-danger btn-sm btnDelCarreraX" rl="'.$data[$i]['id_carrera'].'" title="Eliminar"><i class="fas fa-trash-alt"></i></button>                   
                                </div>';
 }
 

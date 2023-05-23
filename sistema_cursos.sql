@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-05-2023 a las 16:02:02
+-- Tiempo de generación: 23-05-2023 a las 08:17:58
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.3
 
@@ -70,13 +70,15 @@ INSERT INTO `carreras` (`id_carrera`, `codigo`, `nombre`, `estatus_carrera`, `at
 (4, 'VPDSPDVSA', 'PETROLEO', 1, '2023-04-26 13:34:02'),
 (5, 'VPDSINGINF', 'TSU EN INFORMATICA', 1, '2023-04-26 15:15:17'),
 (6, 'VPDSINGIFORT', 'INGENIERIA EN INFORMATICA', 1, '2023-04-26 15:39:54'),
-(9, 'VPDSINGIFORTW', 'PROGRAMACION 22', 2, '2023-04-26 16:02:46'),
+(9, 'VPDSINGIFORTW', 'PROGRAMACION 22', 0, '2023-04-26 16:02:46'),
 (14, 'VPDSINGCC', 'INGENIERIA CONSTRUCCION CIVIL', 1, '2023-04-26 16:17:36'),
 (20, 'test', 'test', 0, '2023-04-27 02:01:46'),
 (21, 'VPDSTCC01', 'TSU CONSTRUCCION CIVIL', 1, '2023-04-27 02:14:11'),
 (22, 'TEST9', 'TEST9', 0, '2023-04-27 02:25:36'),
 (23, 'TEST99', 'TEST99', 0, '2023-04-27 02:34:32'),
-(24, 'TEST23', 'TES23', 2, '2023-04-27 02:34:46');
+(24, 'TEST23', 'TES23', 0, '2023-04-27 02:34:46'),
+(25, 'ASDADAS567', 'TSU EN INFORMATICA 2', 0, '2023-05-23 04:10:55'),
+(26, 'TEST24', 'TEST CODE', 0, '2023-05-23 04:37:59');
 
 -- --------------------------------------------------------
 
@@ -175,33 +177,6 @@ INSERT INTO `items` (`id_item`, `nombre_item`, `estatus_item`, `at_created`, `at
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `materia`
---
-
-CREATE TABLE `materia` (
-  `materia_id` int(11) NOT NULL,
-  `nombre_materia` varchar(255) DEFAULT NULL,
-  `id_carrera` int(11) DEFAULT NULL,
-  `id_semestre` int(11) DEFAULT NULL,
-  `estatus` int(11) NOT NULL DEFAULT 1,
-  `at_created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `at_updated` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `materia`
---
-
-INSERT INTO `materia` (`materia_id`, `nombre_materia`, `id_carrera`, `id_semestre`, `estatus`, `at_created`, `at_updated`) VALUES
-(1, 'Programacion', NULL, NULL, 1, '2023-05-03 04:34:40', '2023-05-03 04:34:40'),
-(11, 'Base de Datos II', NULL, NULL, 1, '2023-05-03 04:34:40', '2023-05-03 04:34:40'),
-(13, 'Redes 1', NULL, NULL, 1, '2023-05-03 04:35:01', '2023-05-03 04:35:01'),
-(14, 'Desarrollo de aplicaciones 1', NULL, NULL, 1, '2023-05-10 06:05:32', '2023-05-10 06:05:32'),
-(15, 'Desarrollo de aplicaciones 2', NULL, NULL, 1, '2023-05-10 06:05:49', '2023-05-10 06:05:49');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `rol`
 --
 
@@ -269,8 +244,18 @@ INSERT INTO `solicitantes` (`id_solicitante`, `cedula`, `nombres`, `apellidos`, 
 (29, 24856789, 'Luis Daniel', 'Quintero Molina', 24, 'casa molina', '4147538695', 'molluis@gmail.com', NULL, 'ESTUDIANTE', '1999-05-19', 1, '2023-05-18 20:57:16', '2023-05-18 20:57:16'),
 (30, 24856789, 'Luis Daniel', 'Quintero Molina', 24, 'casa molina 22', '4147538695', 'molluis@gmail.com', NULL, 'ESTUDIANTE', '1999-05-19', 0, '2023-05-18 20:57:33', '2023-05-18 20:57:33'),
 (31, 23131231, 'test teet', 'test', 12, 'asdas', '12312312', 'trqswer@qwer.com', NULL, 'ESTUDIANTE', '2023-05-24', 0, '2023-05-18 22:18:18', '2023-05-18 22:18:18'),
-(32, 88888882, 'test teet', 'rtes', 32, 'casa molina molina 22', '4123452673', 'asdsadas@sssas.com', NULL, 'ESTUDIANTE', '2005-05-17', 1, '2023-05-18 22:22:18', '2023-05-18 22:22:18'),
-(33, 12331231, 'test tretett', 'etset ', 123, 'asdasd', '1231231', 'asdsadas@ssas.com', NULL, 'ESTUDIANTE', '2010-05-05', 1, '2023-05-18 22:24:30', '2023-05-18 22:24:30');
+(32, 88888882, 'test teet', 'rtes', 32, 'casa molina molina 22', '4123452673', 'asdsadas@sssas.com', NULL, 'ESTUDIANTE', '2005-05-17', 0, '2023-05-18 22:22:18', '2023-05-18 22:22:18'),
+(33, 12331231, 'test tretett', 'etset ', 123, 'asdasd', '1231231', 'asdsadas@ssas.com', NULL, 'ESTUDIANTE', '2010-05-05', 0, '2023-05-18 22:24:30', '2023-05-18 22:24:30'),
+(34, 888888844, 'test2', 'test2', 242, 'casa molina molina 22', '4123452673', 'trqswer@qwer.com', NULL, 'ESTUDIANTE', '2023-05-18', 0, '2023-05-22 15:10:34', '2023-05-22 15:10:34'),
+(35, 30897654, 'Yorman Josse', 'Osuna Aguirre', 22, 'Casa2323', '41463474645', 'trqswer@qwer.com', NULL, 'ESTUDIANTE', '2001-05-23', 2, '2023-05-22 17:34:13', '2023-05-22 17:34:13'),
+(36, 8888888, 'test teet', 'test', NULL, 'casa', '04123452673', 'asdsadas@sssas.com', 'Ingeniero', 'DOCENTE', NULL, 0, '2023-05-22 19:03:39', '2023-05-22 19:03:39'),
+(37, 8888888, 'test teet', 'test', NULL, 'casa', '04123452673', 'asdsadas@sssas.com', 'Ingeniero', 'DOCENTE', NULL, 0, '2023-05-22 19:03:49', '2023-05-22 19:03:49'),
+(38, 8888888, 'test teet', 'test', NULL, 'casa', '04123452673', 'asdsadas@sssas.com', 'Ingeniero', 'DOCENTE', NULL, 0, '2023-05-22 19:04:37', '2023-05-22 19:04:37'),
+(39, 2147483647, 'test', 'testt', NULL, 'qweq', '04123452673', 'trqswer@qwer.com', 'Ingeniero', 'DOCENTE', NULL, 0, '2023-05-22 19:04:57', '2023-05-22 19:04:57'),
+(40, 8888888, 'test teet', 'testt', NULL, 'casa molina molina 22', '04123452673', 'trqswer@qwer.com', 'Licenciada', 'DOCENTE', NULL, 0, '2023-05-22 19:08:11', '2023-05-22 19:08:11'),
+(41, 8888888, 'test teet', 'testt', NULL, 'qweq', '04123452673', 'asdsadas@sssas.com', 'Licenciada', 'DOCENTE', NULL, 0, '2023-05-22 19:15:28', '2023-05-22 19:15:28'),
+(42, 8888888, 'test teet', 'testt', NULL, 'casa molina molina 2212121212', '04123452673', 'trqswer@qwer.com', 'Ingeniero', 'DOCENTE', NULL, 0, '2023-05-22 19:16:23', '2023-05-22 19:16:23'),
+(43, 8888888, 'test teet', 'test', NULL, 'casa las lomas', '04123452673', 'trqswer@qwer.com', 'Ingeniero', 'DOCENTE', NULL, 0, '2023-05-22 19:17:27', '2023-05-22 19:17:27');
 
 -- --------------------------------------------------------
 
@@ -309,7 +294,38 @@ INSERT INTO `solicitudes_ca` (`id_solicitud`, `id_solicitante`, `tipo_solicitant
 (34, 20, 'DOCENTE', 6, 3, 20, 'escalafoneando,', 'PENDIENTE', '2023-05-10 06:31:47', '2023-05-10 06:31:47'),
 (35, 26, 'DOCENTE', 21, 3, 17, 'director,', 'PENDIENTE', '2023-05-10 06:33:13', '2023-05-10 06:33:13'),
 (36, 27, 'DOCENTE', 6, 2, 14, 'Open Free,', 'PENDIENTE', '2023-05-10 06:33:59', '2023-05-10 06:33:59'),
-(37, 28, 'DOCENTE', 6, 4, 21, 'comunidad ,', 'PENDIENTE', '2023-05-10 06:34:46', '2023-05-10 06:34:46');
+(37, 28, 'DOCENTE', 6, 4, 21, 'comunidad ,', 'PENDIENTE', '2023-05-10 06:34:46', '2023-05-10 06:34:46'),
+(38, 36, 'DOCENTE', 21, 1, 2, 'Calculo 2,', 'PROCESANDO', '2023-05-23 05:42:53', '2023-05-23 05:42:53');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `subproyectos`
+--
+
+CREATE TABLE `subproyectos` (
+  `id_subproyecto` int(11) NOT NULL,
+  `codigo_subproyecto` varchar(75) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nombre_subproyecto` varchar(155) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id_carrera` int(11) DEFAULT NULL,
+  `id_semestre` int(11) DEFAULT NULL,
+  `estatus_subproyecto` tinyint(1) DEFAULT 1,
+  `at_created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `at_update` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `subproyectos`
+--
+
+INSERT INTO `subproyectos` (`id_subproyecto`, `codigo_subproyecto`, `nombre_subproyecto`, `id_carrera`, `id_semestre`, `estatus_subproyecto`, `at_created`, `at_update`) VALUES
+(1, '0001', 'Introducción a la informática', 1, 1, 1, '2023-05-22 23:04:38', '2023-05-22 23:04:38'),
+(2, '0002', 'Calculo 1', 1, 1, 1, '2023-05-22 23:04:38', '2023-05-22 23:04:38'),
+(3, '0003', 'Lenguaje y comunicación', 1, 1, 1, '2023-05-22 23:04:38', '2023-05-22 23:04:38'),
+(4, '0004', 'Deporte', 1, 1, 2, '2023-05-22 23:04:38', '2023-05-22 23:04:38'),
+(5, '0005', 'Ética y desarrollo personal', 1, 1, 0, '2023-05-22 23:04:38', '2023-05-22 23:04:38'),
+(6, '0006', 'test teet', NULL, NULL, 0, '2023-05-23 02:59:49', '2023-05-23 02:59:49'),
+(7, '0005', 'test', NULL, NULL, 0, '2023-05-23 03:11:00', '2023-05-23 03:11:00');
 
 -- --------------------------------------------------------
 
@@ -406,12 +422,6 @@ ALTER TABLE `items`
   ADD PRIMARY KEY (`id_item`);
 
 --
--- Indices de la tabla `materia`
---
-ALTER TABLE `materia`
-  ADD PRIMARY KEY (`materia_id`);
-
---
 -- Indices de la tabla `rol`
 --
 ALTER TABLE `rol`
@@ -428,6 +438,12 @@ ALTER TABLE `solicitantes`
 --
 ALTER TABLE `solicitudes_ca`
   ADD PRIMARY KEY (`id_solicitud`);
+
+--
+-- Indices de la tabla `subproyectos`
+--
+ALTER TABLE `subproyectos`
+  ADD PRIMARY KEY (`id_subproyecto`);
 
 --
 -- Indices de la tabla `turno`
@@ -462,7 +478,7 @@ ALTER TABLE `cargas_academicas`
 -- AUTO_INCREMENT de la tabla `carreras`
 --
 ALTER TABLE `carreras`
-  MODIFY `id_carrera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_carrera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `curso`
@@ -489,12 +505,6 @@ ALTER TABLE `items`
   MODIFY `id_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `materia`
---
-ALTER TABLE `materia`
-  MODIFY `materia_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
@@ -504,13 +514,19 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `solicitantes`
 --
 ALTER TABLE `solicitantes`
-  MODIFY `id_solicitante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_solicitante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitudes_ca`
 --
 ALTER TABLE `solicitudes_ca`
-  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT de la tabla `subproyectos`
+--
+ALTER TABLE `subproyectos`
+  MODIFY `id_subproyecto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `turno`

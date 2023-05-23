@@ -5,13 +5,13 @@ require_once '../../includes/config.php';
 if($_POST) {
     $idCarrera = $_POST['idCarrera'];
 
-    $sql = "SELECT * FROM carreras WHERE id = $idCarrera";
+    $sql = "SELECT * FROM carreras WHERE id_carrera = $idCarrera";
     $query = $pdo->prepare($sql);
     $query->execute();
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
     if(!empty($result)) {
-        $sql_update = "UPDATE carreras SET estatus = 0 WHERE id = ?";
+        $sql_update = "UPDATE carreras SET estatus_carrera = 0 WHERE id_carrera = ?";
         $query_update = $pdo->prepare($sql_update);
         $result = $query_update->execute(array($idCarrera));
         if($result) {

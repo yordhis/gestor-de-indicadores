@@ -51,7 +51,7 @@
             </ul>
         </li>
         <li>
-            <a class="app-menu__item" href="lista_materias.php">
+            <a class="app-menu__item" href="lista_subproyectos.php">
               <i class="app-menu__icon fas fa-check-circle"></i>
               <span class="app-menu__label">Sub-Proyectos</span>
             </a>

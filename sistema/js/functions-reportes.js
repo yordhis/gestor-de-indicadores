@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
 /** Carga de modulos automaticos */
 window.addEventListener('load',function(){
+    getSolicitudesCard();
     // delCarrera();
     // editCarrera();
 },false);
@@ -81,6 +82,77 @@ window.addEventListener('load',function(){
 // let next = document.querySelector("#tableCarrera_next");
 
 
+function getSolicitudesCard() {
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    var ajaxUrl = './models/reportes/table_reporte.php';
+
+    
+    request.open('GET', ajaxUrl, true);
+    request.send();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var solicitudes = JSON.parse(request.responseText);
+            console.log(solicitudes);
+            let listCard = '';
+            solicitudes.data.forEach(item =>{
+                if (item.nombre_indicador == 'Matricula o Total de Estudiantes') {
+                    listCard += `
+                    <!-- solicitudes Card -->
+                    <div class="col-xxl-4 col-md-6" >
+                        <div class="card info-card sales-card bg-dark ">
+          
+                          <div class="card-body ">
+                            <h5 class="card-title text-white">${item.nombre_indicador} <span>| ${item.nombre_item}</span></h5>
+          
+                            <div class="d-flex align-items-center">
+                              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-badge-tm text-black"></i>
+                              </div>
+                              <div class="ps-3">
+                                <h6 id="total_solicitudes" class="text-white">${solicitudes.total_matricula}</h6>
+                                <span class="text-success small pt-1 fw-bold" id="porcentaje" >100%</span> <span class="text-muted small pt-2 ps-1">Media</span>
+          
+                              </div>
+                            </div>
+                          </div>
+          
+                        </div>
+                    </div><!-- End Sales Card -->
+                    `;
+                }
+            })
+            solicitudes.data.forEach(item =>{
+                if (item.nombre_indicador != 'Matricula o Total de Estudiantes') {
+                listCard += `
+                <!-- solicitudes Card -->
+                <div class="col-xxl-4 col-md-6" >
+                    <div class="card info-card sales-card">
+      
+                      <div class="card-body">
+                        <h5 class="card-title">${item.nombre_indicador} <span>| ${item.nombre_item}</span></h5>
+      
+                        <div class="d-flex align-items-center">
+                          <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="bi bi-people"></i>
+                          </div>
+                          <div class="ps-3">
+                            <h6 id="total_solicitudes">${item.total_solicitudes}</h6>
+                            <span class="text-success small pt-1 fw-bold" id="porcentaje" >0%</span> <span class="text-muted small pt-2 ps-1">Media</span>
+      
+                          </div>
+                        </div>
+                      </div>
+      
+                    </div>
+                </div><!-- End Sales Card -->
+                `;
+                }
+            })
+
+            document.querySelector('#lista_solicitudes').innerHTML = listCard;
+        }
+    }
+}
 
 
 
