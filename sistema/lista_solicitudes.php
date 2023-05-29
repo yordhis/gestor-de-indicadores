@@ -6,10 +6,10 @@ if(empty($_SESSION['active'])) {
 require_once 'includes/session.php';
 require_once 'includes/header.php';
 require_once 'includes/Modals/modal_solicitudes.php';
-require_once 'includes/Modals/modal_ver_solicitud.php';
+// require_once 'includes/Modals/modal_ver_solicitud.php';
 ?>
 
-<main class="app-content">
+    <main class="app-content">
       <div class="app-title">
         <div>
           <h1>
@@ -50,4 +50,5 @@ require_once 'includes/Modals/modal_ver_solicitud.php';
       </div>
     </main>
 
+   
 <?php require_once 'includes/footer.php'; ?>

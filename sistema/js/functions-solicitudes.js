@@ -396,6 +396,7 @@ tipoSolicitante.addEventListener('change',(e)=>{
     let inputCedulaSolicitante = document.querySelector("#cedula_solicitante");
 
     const tipo = e.target.value;
+    console.log(tipo);
     if(tipo === "ESTUDIANTE" || tipo === "DOCENTE"){
         inputCedulaSolicitante.disabled=false;
         inputCedulaSolicitante.value='';

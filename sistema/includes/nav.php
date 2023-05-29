@@ -8,6 +8,7 @@
         </div>
       </div>
       <ul class="app-menu">
+
       <?php if($_SESSION['rol'] == 1) { ?>
         <li class="treeview">
             <a class="app-menu__item" href="#" data-toggle="treeview">
@@ -20,6 +21,7 @@
             </ul>
         </li>
         <?php } ?>
+
         <li class="treeview">
             <a class="app-menu__item" href="#" data-toggle="treeview">
               <i class="app-menu__icon fa fa-user-graduate"></i>
@@ -40,6 +42,7 @@
               <li><a class="treeview-item" href="lista_profesores.php"><i class="icon fa fa-circle-o"></i>Lista de Profesores</a></li>
             </ul>
         </li>
+
         <li class="treeview">
             <a class="app-menu__item" href="#" data-toggle="treeview">
             <i class="app-menu__icon fas fa-user-tie"></i>
@@ -50,18 +53,21 @@
               <li><a class="treeview-item" href="lista_solicitudes.php"><i class="icon fa fa-circle-o"></i>Lista de Solicitudes</a></li>
             </ul>
         </li>
+
         <li>
             <a class="app-menu__item" href="lista_subproyectos.php">
               <i class="app-menu__icon fas fa-check-circle"></i>
               <span class="app-menu__label">Sub-Proyectos</span>
             </a>
         </li>
+
         <li>
             <a class="app-menu__item" href="lista_carreras.php">
               <i class="app-menu__icon fas fa-check-circle"></i>
               <span class="app-menu__label">Carrera</span>
             </a>
         </li>
+        
         <?php if($_SESSION['rol'] == 1) { ?>
         <li>
             <a class="app-menu__item" href="lista_inscripciones.php">

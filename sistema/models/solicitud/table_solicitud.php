@@ -2,15 +2,30 @@
 
 require_once '../../includes/config.php';
 
-$sql = "SELECT S.id_solicitud, S.id_solicitante, S.tipo_solicitante, S.id_subprograma, S.id_item, S.id_indicador,  S.extra_info, S.estatus_solicitud, S.at_created, 
-               CONCAT(A.nombres, ' ', A.apellidos, ' CI:', A.cedula) as nombre_solicitante,  A.id_solicitante,
-               I.nombre as nombre_indicador, I.id_indicador,
-               T.nombre_item as nombre_item, T.id_item,
-               C.nombre as nombre_subprograma, C.id_carrera
-
+$sql = "SELECT 
+S.id_solicitud, 
+S.id_solicitante, 
+S.tipo_solicitante, 
+S.id_subprograma, 
+S.id_item, 
+S.id_indicador, 
+S.extra_info, 
+S.estatus_solicitud, 
+S.at_created, 
+CONCAT(A.nombres, ' ', A.apellidos, ' CI:', A.cedula) as nombre_solicitante, 
+A.id_solicitante,
+I.nombre as nombre_indicador, 
+I.id_indicador,
+T.nombre_item as nombre_item, 
+T.id_item,
+C.nombre as nombre_subprograma, 
+C.id_carrera
 FROM solicitudes_ca S, solicitantes A, indicadores I, carreras C, items T
-WHERE   S.id_solicitante = A.id_solicitante AND S.id_indicador = I.id_indicador
-        AND S.id_subprograma = C.id_carrera AND S.id_item = T.id_item
+WHERE 
+S.id_solicitante = A.id_solicitante 
+AND S.id_indicador = I.id_indicador
+AND S.id_subprograma = C.id_carrera 
+AND S.id_item = T.id_item
 ";
 $query = $pdo->prepare($sql);
 $query->execute();

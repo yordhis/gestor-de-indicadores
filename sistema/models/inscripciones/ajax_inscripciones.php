@@ -3,12 +3,12 @@
 require_once '../../includes/config.php';
 
 if(!empty($_POST)) {
-    if(empty($_POST['listAlumno']) || empty($_POST['listCurso']) || empty($_POST['listTurno']) || empty($_POST['listStatus'])) {
+    if(empty($_POST['id_solicitante']) || empty($_POST['listCarreras']) || empty($_POST['listTurno']) || empty($_POST['listStatus'])) {
         $arrResponse = array('status' => false,'msg' => 'Todos los campos son necesarios');
     } else {
         $idInscripcion = $_POST['idInscripcion'];
-        $alumno = $_POST['listAlumno'];
-        $curso = $_POST['listCurso'];
+        $alumno = $_POST['id_solicitante'];
+        $curso = $_POST['listCarreras'];
         $turno = $_POST['listTurno'];
         $status = $_POST['listStatus'];
 

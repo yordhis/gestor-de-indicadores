@@ -3,7 +3,7 @@
 
 $host = 'localhost';
 $user = 'root';
-$db = 'sistema_cursos';
+$db = 'sistema_solicitudes';
 $pass = '';
 
     try {

@@ -2,45 +2,83 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header headerRegister">
-                <h5 class="modal-title" id="titleModal">Nueva Inscripcion</h5>
+                <h5 class="modal-title" id="titleModal">Inscripción</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="tile-body">
-                <form id="formInscripcion" name="formInscripcion">
-                    <input type="hidden" name="idInscripcion" id="idInscripcion" value="">
-                    <div class="form-group">
-                        <label for="exampleSelect1">Seleccione Alumno</label>
-                        <select class="form-control" name="listAlumno" id="listAlumno" required>
+                    <form id="formInscripcion" name="formInscripcion">
                         
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleSelect1">Seleccione el Curso</label>
-                        <select class="form-control" name="listCurso" id="listCurso" required>
-                        
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleSelect1">Turno</label>
-                        <select class="form-control" name="listTurno" id="listTurno" required>
-                        
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleSelect1">Estado</label>
-                        <select class="form-control" name="listStatus" id="listStatus" required>
-                            <option value="1">Activo</option>
-                            <option value="2">Inactivo</option>
-                        </select>
-                    </div>
-                    <div class="tile-footer">
-                        <button id="btnActionForm" class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i><span id="btnText">Guardar</span></button>&nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</button>
-                    </div>
-                </form>
+                        <div class="form-group">
+                            
+                            <div class="row">
+                                
+                                
+                                
+                                <div class="col-6">
+                                    <!-- Id de la incripcion -->
+                                    <input type="hidden" name="idInscripcion" id="idInscripcion" value="">
+                                    
+                                    <label for="exampleSelect1">Cédula del solicitante</label>
+                                    <input type="text" name="cedula_solicitante" id="cedula_solicitante" class="form-control"
+                                    placeholder="Ingrese Cédula" onchange="inputCedulaSolicitante()" disabled>
+                                </div>
+                               
+                                <div class="col-6">
+                                    <label for="exampleSelect1">Tipo de solicitante</label>
+                                    <select class="form-control" name="tipo_solicitante" id="tipo_solicitante" >
+                                        <option value="">Selecciones un tipo</option>
+                                        <option value="ESTUDIANTE">Estudiante</option>
+                                        <option value="DOCENTE">Docente</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="id_solicitante" id="id_solicitante" value="">
+
+                            <div id="data_solicitante" class="invisible"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleSelect1">Seleccione Carrera</label>
+                            <select class="form-control" name="listCarreras" id="listCarreras" required>
+                                <!-- CONTENIDO AJAX -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleSelect1">Seleccione Turno</label>
+                            <select class="form-control" name="listTurno" id="listTurno" required>
+                                <!-- CONTENIDO AJAX -->
+                            </select>
+                        </div>
+
+                       
+                        <div class="form-group invisible" id="inputs_extras">
+                           
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleSelect1">Estado</label>
+                            <select class="form-control" name="listStatus" id="listStatus" required>
+                                <option value="1">Activo</option>
+                                <option value="2">Inactivo</option>
+                            </select>
+                        </div>
+                       
+
+                        <div class="tile-footer">
+                            <button id="btnActionForm" class="btn btn-primary" type="submit"><i
+                                    class="fa fa-fw fa-lg fa-check-circle"></i><span
+                                    id="btnText">Guardar</span></button>&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-secondary" data-dismiss="modal"><i
+                                    class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</button>
+
+                                    <i class="invisibles" id="preloadIndicador"></i>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

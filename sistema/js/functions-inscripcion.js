@@ -13,9 +13,9 @@ window.addEventListener('DOMContentLoaded',function(){
             "dataSrc": ""
         },
         "columns": [
-            {"data":"inscripcion_id"},
-            {"data":"nombre"},
-            {"data":"nombre_materia"},
+            {"data":"contador"},
+            {"data":"nombre_solicitante"},
+            {"data":"nombre_carrera"},
             {"data":"tipo_turno"},
             {"data":"estatusI"},
             {"data":"options"},
@@ -32,11 +32,11 @@ window.addEventListener('DOMContentLoaded',function(){
         e.preventDefault();
 
         var idInscripcion = document.querySelector('#idInscripcion').value;
-        var alumno = document.querySelector('#listAlumno').value;
-        var curso = document.querySelector('#listCurso').value;
+        var alumno = document.querySelector('#id_solicitante').value;
+        var curso = document.querySelector('#listCarreras').value;
         var turno = document.querySelector('#listTurno').value;
         var status = document.querySelector('#listStatus').value;
-
+        console.log(alumno);
         if(alumno == '' || curso == '' || turno == '' || status == '') {
             swal('Atencion','Todos los campos son necesarios','error');
             return false;
@@ -70,41 +70,104 @@ window.addEventListener('DOMContentLoaded',function(){
 window.addEventListener('load',function(){
     editInscripcion();
     delInscripcion();
-    getOptionAlumnos();
     getOptionCursos();
     getOptionTurnos();
 },false);
 
-function getOptionAlumnos() {
+
+/** Funcion que se encarga de consultar los datos de la cedula ingreseda */
+const inputCedulaSolicitante = () => {
+    let input = document.querySelector("#cedula_solicitante");
+    console.log(tipoSolicitante.value);
+    getDataSolicitante(input.value, input, tipoSolicitante.value)
+}
+
+/** Evento para detectaar que hallan seleccionado el tipo de solicitante */
+let tipoSolicitante = document.querySelector("#tipo_solicitante");
+tipoSolicitante.addEventListener('change',(e)=>{
+
+    let inputCedulaSolicitante = document.querySelector("#cedula_solicitante");
+
+    const tipo = e.target.value;
+    console.log(tipo);
+    if(tipo === "ESTUDIANTE" || tipo === "DOCENTE"){
+        inputCedulaSolicitante.disabled=false;
+        inputCedulaSolicitante.value='';
+
+    }else{
+        inputCedulaSolicitante.disabled=true;
+    }
+});
+
+function getDataSolicitante(cedula, input, tipo) {
     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    var ajaxUrl = './models/options/options-alumnos.php';
-    request.open('GET',ajaxUrl,true);
+    var ajaxUrl = `./models/options/data-solicitante.php?cedula=${cedula}&tipo=${tipo}`;
+    request.open('GET', ajaxUrl, true);
     request.send();
-    request.onreadystatechange = function() {
-        if(request.readyState == 4 && request.status == 200) {
-            var option = JSON.parse(request.responseText);
-            option.forEach(function(valor){
-               option += '<option value="'+valor.alumno_id+'">'+valor.nombre+' '+valor.apellido+'</option>';  
-            });
-            document.querySelector('#listAlumno').innerHTML = option;
+    request.onreadystatechange = function () {
+        let cardData = document.querySelector('#data_solicitante');
+        let btnGenerar = document.querySelector('#btnActionForm');
+        let inputIdSolicitante = document.querySelector('#id_solicitante');
+
+        cardData.classList.remove('invisible');
+
+        if (request.readyState == 4 && request.status == 200) {
+            let dataSolicitante = JSON.parse(request.responseText);
+            let htmlDatasolicitante = `
+            <b>Nombre y Apellido: </b> ${dataSolicitante[0].nombres} ${dataSolicitante[0].apellidos} <br>
+            <b>Telf: </b> ${dataSolicitante[0].telefono} <br>
+            <b>Correo: </b> ${dataSolicitante[0].correo} 
+            `;
+            inputIdSolicitante.value = dataSolicitante[0].id_solicitante
+            btnGenerar.classList.remove('disabled');
+            btnGenerar.disabled = false;
+            cardData.innerHTML = "";
+            input.classList.remove('border-danger');
+            cardData.classList.add("spinner-border", "text-success");
+            setTimeout(() => {
+                cardData.classList.remove("spinner-border", "text-success");
+                cardData.classList.add("card", "card-body", "mt-2");
+                cardData.innerHTML = htmlDatasolicitante;
+            }, 3000)
+        } else {
+
+            inputIdSolicitante.value = "";
+            input.classList.add('border-danger');
+            btnGenerar.classList.add('disabled');
+            btnGenerar.disabled = true;
+            cardData.innerHTML = `<span class="flex">No hay registros de esta cédula, 
+                                 por favor registre al solicitante. 
+                                <br><a href="lista_alumnos.php">Registrar Alumno</span>
+                                <br><a href="lista_profesores.php">Registrar Docente</span>
+                                `;
+            // <a href="lista_profesores.php">Registrar Profesor</span>
+            setTimeout(() => {
+                cardData.classList.remove("card", "card-body", "mt-2");
+                cardData.innerHTML = ""
+            }, 3000)
         }
     }
 }
+
 function getOptionCursos() {
     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    var ajaxUrl = './models/options/options-cursos.php';
+    var ajaxUrl = './models/options/options-subprogramas.php';
     request.open('GET',ajaxUrl,true);
     request.send();
     request.onreadystatechange = function() {
         if(request.readyState == 4 && request.status == 200) {
             var option = JSON.parse(request.responseText);
+            console.log(option);
+            
             option.forEach(function(valor){
-               option += '<option value="'+valor.curso_id+'">Materia: '+valor.nombre_materia+', Profesor: '+valor.nombre+'</option>';  
+               option += '<option value="'+valor.id_carrera+'">'+valor.nombre+'</option>';  
             });
-            document.querySelector('#listCurso').innerHTML = option;
+            option += '<option value="0" selected>Seleccione una carrera</option>';
+            document.querySelector('#listCarreras').innerHTML = option;
         }
     }
 }
+
 function getOptionTurnos() {
     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     var ajaxUrl = './models/options/options-turnos.php';
@@ -140,9 +203,16 @@ function editInscripcion() {
                 if(request.readyState == 4 && request.status == 200) {
                     var objData = JSON.parse(request.responseText);
                     if(objData.status) {
+
+
+                        let inputCedula = document.querySelector('#cedula_solicitante');
+                        getDataSolicitante(objData.data.cedula, inputCedula, objData.data.tipo_solicitante)
+
+                        // inputCedula.disabled = false;
+                        inputCedula.value = objData.data.cedula;
                         document.querySelector('#idInscripcion').value = objData.data.inscripcion_id;
-                        document.querySelector('#listAlumno').value = objData.data.alumno_id;
-                        document.querySelector('#listCurso').value = objData.data.curso_id;
+                        document.querySelector('#id_solicitante').value = objData.data.id_solicitante;
+                        document.querySelector('#listCarreras').value = objData.data.id_carrera;
                         document.querySelector('#listTurno').value = objData.data.turno_id;
                         document.querySelector('#listStatus').value = objData.data.estatusI;
 
@@ -209,6 +279,18 @@ function delInscripcion() {
         })
     })
 }
+
+/** Resetear el modal del formulario cuando le den XXXXXX */
+let botonCerrar = document.querySelector('.close');
+botonCerrar.addEventListener('click', (e)=>{
+    let formInscripcion = document.querySelector('#formInscripcion'),
+    cardData = document.querySelector('#data_solicitante'),
+    inputs_extras = document.querySelector('#inputs_extras');
+    inputs_extras.innerHTML="";
+    cardData.innerHTML="";
+    for(i=0; i < formInscripcion.length; i++ ) { formInscripcion[i].value="" }
+});
+
 
 function openModalInscripcion() {
     document.querySelector('#idInscripcion').value = "";
