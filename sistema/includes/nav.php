@@ -55,24 +55,32 @@
         </li>
 
         <li>
+            <a class="app-menu__item" href="lista_carreras.php">
+              <i class="app-menu__icon fas fa-check-circle"></i>
+              <span class="app-menu__label">Sub-Programas</span>
+            </a>
+        </li>
+
+        <li>
             <a class="app-menu__item" href="lista_subproyectos.php">
               <i class="app-menu__icon fas fa-check-circle"></i>
               <span class="app-menu__label">Sub-Proyectos</span>
             </a>
         </li>
 
-        <li>
-            <a class="app-menu__item" href="lista_carreras.php">
-              <i class="app-menu__icon fas fa-check-circle"></i>
-              <span class="app-menu__label">Carrera</span>
-            </a>
-        </li>
         
         <?php if($_SESSION['rol'] == 1) { ?>
         <li>
             <a class="app-menu__item" href="lista_inscripciones.php">
               <i class="app-menu__icon fas fa-check-circle"></i>
-              <span class="app-menu__label">Inscripcion</span>
+              <span class="app-menu__label">Inscripción de Alumnos</span>
+            </a>
+        </li>
+
+        <li>
+            <a class="app-menu__item" href="lista_inscripciones_docente.php">
+              <i class="app-menu__icon fas fa-check-circle"></i>
+              <span class="app-menu__label">Asignar Docentes</span>
             </a>
         </li>
         <?php } ?>

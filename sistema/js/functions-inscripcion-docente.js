@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded',function(){
             "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         },
         "ajax": {
-            "url": "./models/inscripciones/table_inscripciones.php",
+            "url": "./models/inscripciones_docentes/table_inscripciones.php",
             "dataSrc": ""
         },
         "columns": [
@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded',function(){
         ],
         "resonsieve": true,
         "bDestroy": true,
-        "iDisplayLength": 10,
+        "iDisplayLength": 999,
         "order": [[0,"asc"]]
     });
 
@@ -36,14 +36,14 @@ window.addEventListener('DOMContentLoaded',function(){
         var curso = document.querySelector('#listCarreras').value;
         var turno = document.querySelector('#listTurno').value;
         var status = document.querySelector('#listStatus').value;
-        console.log(alumno);
+       
         if(alumno == '' || curso == '' || turno == '' || status == '') {
             swal('Atencion','Todos los campos son necesarios','error');
             return false;
         }
 
         var request = (window.XMLHttpRequest) ? new XMLHttpRequest : new ActiveXObject('Microsoft.XMLHTTP');
-        var ajaxUrl = './models/inscripciones/ajax_inscripciones.php';
+        var ajaxUrl = './models/inscripciones_docentes/ajax_inscripciones.php';
         var formData = new FormData(formInscripcion);
         request.open('POST',ajaxUrl,true);
         request.send(formData);
@@ -78,25 +78,9 @@ window.addEventListener('load',function(){
 /** Funcion que se encarga de consultar los datos de la cedula ingreseda */
 const inputCedulaSolicitante = () => {
     let input = document.querySelector("#cedula_solicitante");
-    getDataSolicitante(input.value, input, 'ESTUDIANTE')
+    getDataSolicitante(input.value, input, 'DOCENTE')
 }
 
-/** Evento para detectaar que hallan seleccionado el tipo de solicitante */
-// let tipoSolicitante = document.querySelector("#tipo_solicitante");
-// tipoSolicitante.addEventListener('change',(e)=>{
-
-//     let inputCedulaSolicitante = document.querySelector("#cedula_solicitante");
-
-//     const tipo = e.target.value;
-//     console.log(tipo);
-//     if(tipo === "ESTUDIANTE" || tipo === "DOCENTE"){
-//         inputCedulaSolicitante.disabled=false;
-//         inputCedulaSolicitante.value='';
-
-//     }else{
-//         inputCedulaSolicitante.disabled=true;
-//     }
-// });
 
 function getDataSolicitante(cedula, input, tipo) {
     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
@@ -137,10 +121,9 @@ function getDataSolicitante(cedula, input, tipo) {
             btnGenerar.classList.add('disabled');
             btnGenerar.disabled = true;
             cardData.innerHTML = `<span class="flex">No hay registros de esta cédula, 
-                                 por favor registre al Estudiante. 
-                                <br><a href="lista_alumnos.php">Registrar Estudiante</span>
+                                 por favor registre al Docente. 
+                                <br><a href="lista_profesores.php">Registrar Docente</span>
                                 `;
-            // <a href="lista_profesores.php">Registrar Profesor</span>
             setTimeout(() => {
                 cardData.classList.remove("card", "card-body", "mt-2");
                 cardData.innerHTML = ""
@@ -157,7 +140,6 @@ function getOptionCursos() {
     request.onreadystatechange = function() {
         if(request.readyState == 4 && request.status == 200) {
             var option = JSON.parse(request.responseText);
-            console.log(option);
             
             option.forEach(function(valor){
                option += '<option value="'+valor.id_carrera+'">'+valor.nombre+'</option>';  
@@ -196,7 +178,7 @@ function editInscripcion() {
             var idInscripcion = this.getAttribute('rl');
 
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            var ajaxUrl = './models/inscripciones/edit_inscripciones.php?id='+idInscripcion;
+            var ajaxUrl = './models/inscripciones_docentes/edit_inscripciones.php?id='+idInscripcion;
             request.open('GET',ajaxUrl,true);
             request.send();
             request.onreadystatechange = function() {
@@ -255,7 +237,7 @@ function delInscripcion() {
             },function(Confirm){
                 if(Confirm) {
                     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-                    var ajaxDelInscripcion = './models/inscripciones/delet_inscripcion.php';
+                    var ajaxDelInscripcion = './models/inscripciones_docentes/delet_inscripcion.php';
                     var strData = "idInscripcion="+idInscripcion;
                     request.open('POST',ajaxDelInscripcion,true);
                     request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -295,7 +277,7 @@ botonCerrar.addEventListener('click', (e)=>{
 function openModalInscripcion() {
     document.querySelector("#cedula_solicitante").disabled=false;
     document.querySelector('#idInscripcion').value = "";
-    document.querySelector('#titleModal').innerHTML = 'Nueva Inscripcion De Estudiante';
+    document.querySelector('#titleModal').innerHTML = 'Nueva Asignación de docente a sub-programa';
     document.querySelector('.modal-header').classList.replace('updateRegister','headerRegister');
     document.querySelector('#btnActionForm').classList.replace('btn-info','btn-primary');
     document.querySelector('#btnText').innerHTML = 'Guardar';

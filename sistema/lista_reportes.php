@@ -19,16 +19,53 @@ require_once 'includes/header_reportes.php';
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-          <li class="breadcrumb-item"><a href="#">Lista de reporte</a></li>
+          <li class="breadcrumb-item"><a href="#">Reporte</a></li>
         </ul>
       </div>
+      
     <section class="section dashboard" >
-      <div class="row" id="lista_solicitudes">
-          <!-- Llenado automatico desde JS, se espera una lista de tarjetas de todos los item y sus indicadores -->
+
+      <div class="row" id="tarjetas_informativas">
       </div>
+
+      <div class="col-sm-12">
+          <h1>Items</h1>
+      </div>
+
+      <div class="row" >
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Promedio total de solicitudes recibidas</h5>
+
+                  <!-- Pie Chart -->
+                  <div id="pieChartItems"></div>
+                  <!-- End Pie Chart -->
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Promedio de Docentes por categoria</h5>
+
+                  <!-- Pie Chart -->
+                  <div id="barChartDocente"></div>
+                  <!-- End Pie Chart -->
+
+                </div>
+              </div>
+            </div>
+      </div>
+      
+      <div class="col-sm-12">
+        <h1>Promedio de solicitudes por Indicadores</h1>
+      </div>
+
       <div class="row" id="barraDeEstadisticas">
           <!-- Barra de estadisticas por item -->
-       
       </div>
 
     </section>

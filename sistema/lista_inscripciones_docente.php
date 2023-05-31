@@ -5,21 +5,20 @@ if(empty($_SESSION['active'])) {
 }
 require_once 'includes/session.php';
 require_once 'includes/header.php';
-require_once 'includes/Modals/modal_solicitudes.php';
-// require_once 'includes/Modals/modal_ver_solicitud.php';
+require_once 'includes/Modals/modal_inscripcion.php';
 ?>
 
-    <main class="app-content">
+<main class="app-content">
       <div class="app-title">
         <div>
           <h1>
-              <i class="fas fa-user-tag"></i> Lista de solicitudes
-              <button class="btn btn-primary" type="button" onclick="openModalSolicitud()">Generar solicitud</button>
+              <i class="fas fa-user-tag"></i> Lista de Docentes Asignados
+              <button class="btn btn-primary" type="button" onclick="openModalInscripcion()">Nueva Asignación</button>
           </h1>
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-          <li class="breadcrumb-item"><a href="#">Lista de Solicitudes</a></li>
+          <li class="breadcrumb-item"><a href="#">Asignar Docentes</a></li>
         </ul>
       </div>
 
@@ -28,17 +27,14 @@ require_once 'includes/Modals/modal_solicitudes.php';
           <div class="tile">
             <div class="tile-body">
               <div class="table-responsive">
-                <table class="table table-hover table-bordered" id="tableSolicitud">
+                <table class="table table-hover table-bordered" id="tableInscripciones">
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Solicitante</th>
+                      <th>Docentes</th>
                       <th>Sub-Programa</th>
-                      <th>Item</th>
-                      <th>Indicador</th>
-                      <th>Info</th>
+                      <th>Turno</th>
                       <th>Estatus</th>
-                      <th>Fecha</th>
                       <th>Acciones</th>
                   </thead>
                   <tbody>
@@ -51,5 +47,4 @@ require_once 'includes/Modals/modal_solicitudes.php';
       </div>
     </main>
 
-   
 <?php require_once 'includes/footer.php'; ?>

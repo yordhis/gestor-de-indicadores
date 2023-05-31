@@ -18,7 +18,7 @@ INNER JOIN carreras as C ON C.id_carrera = I.curso_id
 WHERE I.estatusI != 0 AND tipo_inscripto = ?
 ";
 $query = $pdo->prepare($sql);
-$query->execute(array('ESTUDIANTE'));
+$query->execute(array('DOCENTE'));
 $data = $query->fetchAll(PDO::FETCH_ASSOC);
 
 for($i = 0;$i < count($data);$i++) {

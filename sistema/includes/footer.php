@@ -57,6 +57,10 @@
             case 'lista_inscripciones.php':
                 echo '<script src="js/functions-inscripcion.js"></script>';
                 break;
+
+            case 'lista_inscripciones_docente.php':
+                echo '<script src="js/functions-inscripcion-docente.js"></script>';
+                break;
             
             default:
                 echo 'Not Found 404';

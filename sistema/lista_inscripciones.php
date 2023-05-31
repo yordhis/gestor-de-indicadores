@@ -12,13 +12,13 @@ require_once 'includes/Modals/modal_inscripcion.php';
       <div class="app-title">
         <div>
           <h1>
-              <i class="fas fa-user-tag"></i> Lista de Inscripciones
+              <i class="fas fa-user-tag"></i> Lista de Alumnos inscriptos
               <button class="btn btn-primary" type="button" onclick="openModalInscripcion()">Nueva Inscripcion</button>
           </h1>
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-          <li class="breadcrumb-item"><a href="#">Lista de inscripciones</a></li>
+          <li class="breadcrumb-item"><a href="#">Incripción de Alumnos</a></li>
         </ul>
       </div>
 
@@ -31,8 +31,8 @@ require_once 'includes/Modals/modal_inscripcion.php';
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Alumno</th>
-                      <th>Carrera</th>
+                      <th>Alumnos</th>
+                      <th>Carrera / Sub-Programa</th>
                       <th>Turno</th>
                       <th>Estatus</th>
                       <th>Acciones</th>

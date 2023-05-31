@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
             { "data": "nombre_subprograma" },
             { "data": "nombre_item" },
             { "data": "nombre_indicador" },
+            { "data": "extra_info" },
             { "data": "estatus_solicitud" },
             { "data": "at_created" },
             { "data": "options" },
@@ -148,10 +149,11 @@ const setInputsDinamicos = (e, formGroupNew) =>{
                 inputNew = `
                 <select class="form-control" name="extra_info_1" id="extra_info_1" required>
                     <option value="">Seleccione una opción</option>
-                    <option value="Docente Agregado">Docente Agregado</option>
-                    <option value="Docente Asistente">Docente Asistente</option>
-                    <option value="Docente Instructor">Docente Instructor</option>
-                    <option value="Docente Titular">Docente Titular</option>
+                    <option value="AGREGADO">Docente Agregado</option>
+                    <option value="ASISTENTE">Docente Asistente</option>
+                    <option value="INSTRUCTOR">Docente Instructor</option>
+                    <option value="ASOCIADO">Docente Asociado</option>
+                    <option value="TITULAR">Docente Titular</option>
                 </select>
                 `;
             break;
@@ -276,18 +278,18 @@ function editSolicitud() {
 
                         inputCedulaSolicitante()
 
-                        if (objData.data.estatus_solicitud == "ATENDIDO") {
-                            var optionSelect = '<option value="ATENDIDO" selected class="notBlock">ATENDIDO</option>';
-                        } else if (objData.data.estatus == "PROCESANDO") {
-                            var optionSelect = '<option value="PROCESANDO" selected class="notBlock">PROCESANDO</option>';
+                        if (objData.data.estatus_solicitud == "APROBADO") {
+                            var optionSelect = '<option value="APROBADO" selected class="notBlock">APROBADO</option>';
+                        } else if (objData.data.estatus == "RECHAZADO") {
+                            var optionSelect = '<option value="RECHAZADO" selected class="notBlock">RECHAZADO</option>';
                         } else {
                             var optionSelect = '<option value="PENDIENTE" selected class="notBlock">PENDIENTE</option>';
                         }
 
                         var htmlOption = `${optionSelect}
                                     <option value="PENDIENTE">PENDIENTE</option>
-                                    <option value="PROCESANDO">PROCESANDO</option>
-                                    <option value="ATENDIDO">ATENDIDO</option>
+                                    <option value="RECHAZADO">RECHAZADO</option>
+                                    <option value="APROBADO">APROBADO</option>
                                         `;
                         document.querySelector('#listEstatus').innerHTML = htmlOption;
 
@@ -520,8 +522,8 @@ function openModalSolicitud() {
     tipo.disabled=false;
     var htmlOption = `
     <option value="PENDIENTE">PENDIENTE</option>
-    <option value="PROCESANDO">PROCESANDO</option>
-    <option value="ATENDIDO">ATENDIDO</option>
+    <option value="RECHAZADO">RECHAZADO</option>
+    <option value="APROBADO">APROBADO</option>
         `;
 
     cardData.classList.add('invisible');

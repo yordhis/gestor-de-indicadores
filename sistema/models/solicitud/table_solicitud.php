@@ -31,16 +31,28 @@ $query = $pdo->prepare($sql);
 $query->execute();
 
 $data = $query->fetchAll(PDO::FETCH_ASSOC);
-// echo $data;
+
 for($i = 0;$i < count($data);$i++) {
     $data[$i]['contador'] = $i+1;
 
-    if($data[$i]['estatus_solicitud'] == "ATENDIDO") {
-        $data[$i]['estatus_solicitud'] = '<span class="badge badge-success">ATENDIDO</span>';
-    } else if($data[$i]['estatus_solicitud'] == "PROCESANDO") {
-        $data[$i]['estatus_solicitud'] = '<span class="badge badge-warning">PROCESANDO</span>';
+    /** Serealizando la columna extra_info */
+    $extraInfoArray = explode(',', $data[$i]['extra_info']);
+   
+        if (empty($extraInfoArray[0])) {
+            $data[$i]['extra_info'] = '';
+        }elseif (empty($extraInfoArray[1]) ) {
+            $data[$i]['extra_info'] = $extraInfoArray[0];
+        }else{
+            $data[$i]['extra_info'] = $extraInfoArray[0] . ' / ' . $extraInfoArray[1];
+        }
+    
+
+    if($data[$i]['estatus_solicitud'] == "APROBADO") {
+        $data[$i]['estatus_solicitud'] = '<span class="badge badge-success">APROBADO</span>';
+    } else if($data[$i]['estatus_solicitud'] == "RECHAZADO") {
+        $data[$i]['estatus_solicitud'] = '<span class="badge badge-danger">RECHAZADO</span>';
     }else{
-        $data[$i]['estatus_solicitud'] = '<span class="badge badge-danger">PENDIENTE</span>';
+        $data[$i]['estatus_solicitud'] = '<span class="badge badge-warning">PENDIENTE</span>';
     }
 
     $data[$i]['options'] = '<div class="text-center">
@@ -48,6 +60,9 @@ for($i = 0;$i < count($data);$i++) {
         <button class="btn btn-danger btn-sm btnDelSolicitud" rl="'.$data[$i]['id_solicitud'].'" title="Eliminar"><i class="fas fa-trash-alt"></i></button>                   
     </div>';
 }
+
+// print_r($data);
+// return;
 
 echo json_encode($data,JSON_UNESCAPED_UNICODE);
 die();
